@@ -1,0 +1,9 @@
+CM001 – small – base – False
+CM002 – small – premium – False
+CM003 – small – deluxe – True
+CM101 – large – base – False
+CM102 – large – premium – True
+CM103 – large – deluxe – True
+EM001 – espresso – base – False
+EM002 – espresso – premium – False
+EM003 – espresso – deluxe – True

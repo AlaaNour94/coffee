@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - inovola-net
+  
+  coffee_seed:
+    build: .
+    container_name: coffee_seed
+    command: seed
+    environment:
+      - DATABASE_URL=mongodb://mongo/coffee
+    restart: on-failure
+    networks:
+      - inovola-net
+    depends_on:
+      - mongo
+  
+  coffee:
+    build: .
+    container_name: coffee
+    environment:
+      - DATABASE_URL=mongodb://mongo/coffee
+    restart: on-failure
+    ports:
+      - 9000:9000
+    networks:
+      - inovola-net
+    depends_on:
+      - coffee_seed
+  
+
+networks:
+  inovola-net:
+    external: false
